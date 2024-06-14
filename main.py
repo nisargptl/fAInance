@@ -1,5 +1,6 @@
 import sqlite3
 import random
+import csv
 from datetime import date, timedelta
 from typing import Optional, List, Tuple
 
@@ -96,6 +97,38 @@ def delete_transaction(transaction_id: int) -> str:
     conn.close()
     return f"Transaction {transaction_id} deleted successfully."
 
+# Export transactions to CSV
+def export_transactions_to_csv(filename="transactions.csv"):
+    conn = sqlite3.connect("transactions.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM transactions")
+    transactions = cursor.fetchall()
+    conn.close()
+
+    with open(filename, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["ID", "Date", "Category", "Amount", "Description", "Expense"])
+        writer.writerows(transactions)
+
+    print(f"Transactions exported successfully to {filename}.")
+
+# Import transactions from CSV
+def import_transactions_from_csv(filename="transactions.csv"):
+    conn = sqlite3.connect("transactions.db")
+    cursor = conn.cursor()
+
+    with open(filename, mode="r") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            cursor.execute('''
+            INSERT INTO transactions (date, category, amount, description, expense)
+            VALUES (?, ?, ?, ?, ?)''', 
+            (row["Date"], row["Category"], float(row["Amount"]), row["Description"], int(row["Expense"])))
+
+    conn.commit()
+    conn.close()
+    print(f"Transactions imported successfully from {filename}.")
+
 # Main function to run the system
 def main():
     while True:
@@ -104,9 +137,11 @@ def main():
         print("2. Search Transactions")
         print("3. Edit Transactions")
         print("4. Delete Transactions")
-        print("5. Exit")
+        print("5. Export Transactions to CSV")
+        print("6. Import Transactions from CSV")
+        print("7. Exit")
 
-        choice = input("Enter your choice (1-5): ")
+        choice = input("Enter your choice (1-7): ")
 
         if choice == '1':
             create_sample_database("transactions.db")
@@ -136,6 +171,10 @@ def main():
                 message = delete_transaction(transaction_id)
                 print(message)
         elif choice == '5':
+            export_transactions_to_csv()
+        elif choice == '6':
+            import_transactions_from_csv()
+        elif choice == '7':
             print("Thank you for using the Personal Finance Management System. Goodbye!")
             break
         else:

@@ -1,0 +1,100 @@
+ID,Date,Category,Amount,Description,Expense
+1,2024-06-04,Kids,106.19,Kids expense,1
+2,2023-12-01,Shopping,400.23,Shopping expense,1
+3,2024-05-31,Fuel,398.74,Fuel expense,1
+4,2024-06-20,Fuel,388.03,Fuel expense,1
+5,2024-04-09,Salary,2020.78,Monthly salary,0
+6,2023-11-13,Kids,403.77,Kids expense,1
+7,2023-09-07,Sports,176.61,Sports expense,1
+8,2024-08-10,Entertainment,231.01,Entertainment expense,1
+9,2024-03-02,Kids,80.73,Kids expense,1
+10,2024-07-01,Fuel,343.43,Fuel expense,1
+11,2024-04-18,General,450.09,General expense,1
+12,2023-12-11,Kids,427.86,Kids expense,1
+13,2024-01-11,Kids,13.56,Kids expense,1
+14,2023-09-17,Travel,346.44,Travel expense,1
+15,2023-10-18,Shopping,397.55,Shopping expense,1
+16,2024-03-01,Sports,59.81,Sports expense,1
+17,2023-11-25,Entertainment,469.01,Entertainment expense,1
+18,2024-05-11,Holidays,443.94,Holidays expense,1
+19,2024-08-27,Eating Out,319.73,Eating Out expense,1
+20,2024-04-06,General,304.86,General expense,1
+21,2024-07-05,Eating Out,473.34,Eating Out expense,1
+22,2024-07-08,Holidays,421.63,Holidays expense,1
+23,2024-08-08,Entertainment,428.35,Entertainment expense,1
+24,2023-12-27,Fuel,218.92,Fuel expense,1
+25,2024-05-19,Clothes,162.77,Clothes expense,1
+26,2023-10-29,Eating Out,260.24,Eating Out expense,1
+27,2024-04-06,Shopping,294.35,Shopping expense,1
+28,2023-11-30,Salary,4547.16,Monthly salary,0
+29,2023-09-22,Clothes,466.28,Clothes expense,1
+30,2023-11-02,Clothes,496.74,Clothes expense,1
+31,2024-05-22,Clothes,348.41,Clothes expense,1
+32,2023-10-05,Shopping,353.75,Shopping expense,1
+33,2023-12-16,Holidays,179.62,Holidays expense,1
+34,2024-02-11,Shopping,130.28,Shopping expense,1
+35,2023-09-05,Clothes,75.48,Clothes expense,1
+36,2024-06-01,Gifts,395.98,Gifts expense,1
+37,2024-06-22,Holidays,195.76,Holidays expense,1
+38,2023-11-17,Sports,204.96,Sports expense,1
+39,2023-12-23,Travel,66.57,Travel expense,1
+40,2023-09-11,Fuel,238.41,Fuel expense,1
+41,2024-04-23,Eating Out,101.59,Eating Out expense,1
+42,2024-01-13,Kids,14.06,Kids expense,1
+43,2023-10-23,Holidays,285.56,Holidays expense,1
+44,2023-11-23,Gifts,31.12,Gifts expense,1
+45,2024-08-06,Clothes,183.41,Clothes expense,1
+46,2024-04-10,Sports,333.57,Sports expense,1
+47,2024-08-18,Gifts,477.17,Gifts expense,1
+48,2023-10-30,General,199.2,General expense,1
+49,2024-06-10,Fuel,474.95,Fuel expense,1
+50,2023-12-13,Kids,69.31,Kids expense,1
+51,2024-02-27,Clothes,175.92,Clothes expense,1
+52,2024-07-31,Salary,3053.27,Monthly salary,0
+53,2024-02-24,Shopping,112.36,Shopping expense,1
+54,2024-03-11,Sports,32.58,Sports expense,1
+55,2024-07-22,Salary,4205.47,Monthly salary,0
+56,2023-10-24,Holidays,224.38,Holidays expense,1
+57,2024-03-04,General,40.77,General expense,1
+58,2024-01-19,Travel,186.35,Travel expense,1
+59,2024-07-04,Fuel,477.39,Fuel expense,1
+60,2024-05-16,Entertainment,206.04,Entertainment expense,1
+61,2023-11-10,Clothes,209.01,Clothes expense,1
+62,2024-03-28,Clothes,176.73,Clothes expense,1
+63,2024-08-08,Holidays,94.18,Holidays expense,1
+64,2024-01-05,General,227.96,General expense,1
+65,2023-11-03,Holidays,193.33,Holidays expense,1
+66,2024-02-20,Eating Out,466.7,Eating Out expense,1
+67,2023-12-17,Entertainment,303.2,Entertainment expense,1
+68,2023-12-12,Kids,319.5,Kids expense,1
+69,2024-08-11,General,433.13,General expense,1
+70,2023-10-16,Kids,229.16,Kids expense,1
+71,2024-02-08,Holidays,148.93,Holidays expense,1
+72,2024-07-25,Shopping,73.56,Shopping expense,1
+73,2023-10-24,General,303.96,General expense,1
+74,2023-12-31,Entertainment,271.08,Entertainment expense,1
+75,2024-05-29,Entertainment,416.0,Entertainment expense,1
+76,2023-12-05,Kids,326.21,Kids expense,1
+77,2024-07-11,General,178.77,General expense,1
+78,2024-01-02,Kids,333.21,Kids expense,1
+79,2023-11-22,Clothes,126.5,Clothes expense,1
+80,2024-05-31,Eating Out,233.27,Eating Out expense,1
+81,2024-02-04,Eating Out,135.86,Eating Out expense,1
+82,2024-01-05,Travel,431.86,Travel expense,1
+83,2024-01-09,Salary,3157.3,Monthly salary,0
+84,2024-02-22,Eating Out,64.67,Eating Out expense,1
+85,2024-08-22,Holidays,490.99,Holidays expense,1
+86,2024-08-31,Fuel,416.22,Fuel expense,1
+87,2024-07-21,Shopping,473.83,Shopping expense,1
+88,2024-03-04,Shopping,389.99,Shopping expense,1
+89,2024-08-08,Fuel,85.39,Fuel expense,1
+90,2024-02-25,Holidays,280.29,Holidays expense,1
+91,2024-01-14,Shopping,317.17,Shopping expense,1
+92,2024-07-08,Holidays,53.83,Holidays expense,1
+93,2024-05-03,General,103.31,General expense,1
+94,2024-02-25,General,94.29,General expense,1
+95,2023-11-22,Kids,273.66,Kids expense,1
+96,2024-04-19,Travel,185.56,Travel expense,1
+97,2023-12-29,Clothes,395.16,Clothes expense,1
+98,2024-01-06,Eating Out,282.83,Eating Out expense,1
+99,2024-05-31,Sports,265.92,Sports expense,1
