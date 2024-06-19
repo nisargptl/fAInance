@@ -3,6 +3,7 @@ import random
 import csv
 from datetime import date, timedelta
 from typing import Optional, List, Tuple
+import matplotlib.pyplot as plt
 
 # Database setup function
 def create_sample_database(database_name):
@@ -128,6 +129,27 @@ def import_transactions_from_csv(filename="transactions.csv"):
     conn.commit()
     conn.close()
     print(f"Transactions imported successfully from {filename}.")
+# Graphical analysis function
+def show_spending_by_category():
+    conn = sqlite3.connect("transactions.db")
+    cursor = conn.cursor()
+
+    cursor.execute('''
+    SELECT category, SUM(amount) FROM transactions WHERE expense = 1 GROUP BY category
+    ''')
+    data = cursor.fetchall()
+    conn.close()
+
+    categories = [item[0] for item in data]
+    amounts = [item[1] for item in data]
+
+    # Plotting
+    plt.figure(figsize=(10, 6))
+    plt.bar(categories, amounts)
+    plt.xlabel('Category')
+    plt.ylabel('Amount Spent')
+    plt.title('Spending by Category')
+    plt.show()
 
 # Main function to run the system
 def main():
@@ -139,9 +161,10 @@ def main():
         print("4. Delete Transactions")
         print("5. Export Transactions to CSV")
         print("6. Import Transactions from CSV")
-        print("7. Exit")
+        print("7. Show Spending by Category (Graph)")
+        print("8. Exit")
 
-        choice = input("Enter your choice (1-7): ")
+        choice = input("Enter your choice (1-8): ")
 
         if choice == '1':
             create_sample_database("transactions.db")
@@ -175,6 +198,8 @@ def main():
         elif choice == '6':
             import_transactions_from_csv()
         elif choice == '7':
+            show_spending_by_category()
+        elif choice == '8':
             print("Thank you for using the Personal Finance Management System. Goodbye!")
             break
         else:
