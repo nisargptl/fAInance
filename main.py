@@ -54,31 +54,6 @@ def create_sample_database(database_name):
     conn.close()
     print("Database and sample data created successfully.")
 
-
-# Edit transaction function
-def edit_transaction(transaction_id: int, new_date: str, new_category: str, new_amount: float, new_description: str, new_expense: bool) -> str:
-    conn = sqlite3.connect("transactions.db")
-    cursor = conn.cursor()
-    cursor.execute('''
-    UPDATE transactions 
-    SET date = ?, category = ?, amount = ?, description = ?, expense = ?
-    WHERE id = ?
-    ''', (new_date, new_category, new_amount, new_description, new_expense, transaction_id))
-
-    conn.commit()
-    conn.close()
-    return f"Transaction {transaction_id} updated successfully."
-
-# Delete transaction function
-def delete_transaction(transaction_id: int) -> str:
-    conn = sqlite3.connect("transactions.db")
-    cursor = conn.cursor()
-
-    cursor.execute('DELETE FROM transactions WHERE id = ?', (transaction_id,))
-    conn.commit()
-    conn.close()
-    return f"Transaction {transaction_id} deleted successfully."
-
 # Export transactions to CSV
 def export_transactions_to_csv(filename="transactions.csv"):
     conn = sqlite3.connect("transactions.db")
@@ -110,6 +85,7 @@ def import_transactions_from_csv(filename="transactions.csv"):
     conn.commit()
     conn.close()
     print(f"Transactions imported successfully from {filename}.")
+
 # Graphical analysis function
 def show_spending_by_category():
     conn = sqlite3.connect("transactions.db")
@@ -233,6 +209,56 @@ def execute_sql(query: str) -> Optional[List[Tuple[Any, ...]]]:
         print(f"An error occurred: {e}")
         return None
 
+# Unified option for search, edit, delete, and analyze transactions
+def search_edit_delete_analyze():
+    while True:
+        print("\n--- Search, Edit, Delete, or Analyze Transactions ---")
+        print("Disclaimer: Edit and delete options are for single transactions. For bulk operations, use Option 7.")
+        filter_category = input("Enter category to filter by (or press Enter to skip): ")
+        filter_date = input("Enter date to filter by (YYYY-MM-DD) (or press Enter to skip): ")
+
+        # Search for transactions based on the filter
+        transactions = search_transactions(filter_category, filter_date)
+        if transactions:
+            print("\nTransactions found:")
+            for transaction in transactions:
+                print(f"{transaction[0]} | {transaction[1]} | {transaction[2]} | {transaction[3]} | {transaction[4]} | {transaction[5]}")
+
+            # Provide options after search
+            print("\n1. Edit Transaction")
+            print("2. Delete Transaction")
+            print("3. Analyze Transactions")
+            print("4. Return to Main Menu")
+
+            sub_choice = input("Enter your choice (1-4): ")
+
+            if sub_choice == '1':  # Edit transaction
+                transaction_id = int(input("Enter transaction ID to edit: "))
+                new_date = input("Enter new date (YYYY-MM-DD): ")
+                new_category = input("Enter new category: ")
+                new_amount = float(input("Enter new amount: "))
+                new_description = input("Enter new description: ")
+                new_expense = bool(int(input("Is it an expense? (1 for Yes, 0 for No): ")))
+                message = edit_transaction(transaction_id, new_date, new_category, new_amount, new_description, new_expense)
+                print(message)
+
+            elif sub_choice == '2':  # Delete transaction
+                transaction_id = int(input("Enter transaction ID to delete: "))
+                confirmation = input(f"Are you sure you want to delete transaction {transaction_id}? (y/n): ").lower()
+                if confirmation == 'y':
+                    message = delete_transaction(transaction_id)
+                    print(message)
+
+            elif sub_choice == '3':  # Analyze Transactions
+                show_spending_by_category()
+
+            elif sub_choice == '4':  # Return to main menu
+                break
+            else:
+                print("Invalid choice. Please try again.")
+        else:
+            print("No transactions found matching the criteria.")
+
 # Main function to run the system
 def main():
     openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -241,7 +267,7 @@ def main():
         print("\nPersonal Finance Management System")
         print("1. Create/Reset Database")
         print("2. Store Transaction")
-        print("3. Search, Edit, Delete, or Analyze Transactions")
+        print("3. Search, Edit, Delete, or Analyze Transaction")
         print("4. Export Transactions to CSV")
         print("5. Import Transactions from CSV")
         print("6. Show Spending by Category (Graph)")
@@ -255,15 +281,7 @@ def main():
         elif choice == '2':
             storage_assistant.initiate_chat(user_proxy, message="Please enter your transaction details.")
         elif choice == '3':
-            filter_category = input("Enter category to filter by (or press Enter to skip): ")
-            filter_date = input("Enter date to filter by (YYYY-MM-DD) (or press Enter to skip): ")
-
-            transactions = search_transactions(filter_category, filter_date)
-            if transactions:
-                for transaction in transactions:
-                    print(f"{transaction[0]} | {transaction[1]} | {transaction[2]} | {transaction[3]} | {transaction[4]} | {transaction[5]}")
-            else:
-                print("No transactions found matching the criteria.")
+            search_edit_delete_analyze()
         elif choice == '4':
             export_transactions_to_csv()
         elif choice == '5':
@@ -271,13 +289,7 @@ def main():
         elif choice == '6':
             show_spending_by_category()
         elif choice == '7':
-            query = input("Enter the SQL query: ")
-            results = execute_sql(query)
-            if results:
-                for result in results:
-                    print(result)
-            else:
-                print("No results found or an error occurred.")
+            search_assistant.initiate_chat(user_proxy, message="Please enter the SQL query you'd like to execute. Remember that this option allows bulk operations, including edits or deletions.")
         elif choice == '8':
             print("Thank you for using the Personal Finance Management System. Goodbye!")
             break
